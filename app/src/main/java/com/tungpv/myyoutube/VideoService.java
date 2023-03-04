@@ -85,7 +85,7 @@ public class VideoService extends Service implements MediaPlayer.OnPreparedListe
                     YtFile ytFile = getBestStream(ytFiles);
                     String url = ytFile.getUrl();
                     mVideoTitle = videoMeta.getTitle();
-                    /*String thumbUrl = videoMeta.getThumbUrl();
+                    String thumbUrl = videoMeta.getThumbUrl();
                     Glide.with(getApplicationContext())
                             .asBitmap()
                             .load(thumbUrl)
@@ -93,11 +93,12 @@ public class VideoService extends Service implements MediaPlayer.OnPreparedListe
                                 @Override
                                 public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                                     mThumbBitmap = resource;
+                                    playVideo(url);
 
                                 }
-                            });*/
-                    playVideo(url);
+                            });
                     Log.i(TAG, "video url " + url);
+                    Log.i(TAG, "thumb url " + thumbUrl);
 
 
                 }
@@ -172,7 +173,7 @@ public class VideoService extends Service implements MediaPlayer.OnPreparedListe
 
         notificationBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle(mVideoTitle)
-                //.setLargeIcon(mThumbBitmap)
+                .setLargeIcon(mThumbBitmap)
                 .setSmallIcon(android.R.drawable.ic_media_play)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
