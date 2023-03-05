@@ -82,7 +82,9 @@ public class VideoService extends Service implements MediaPlayer.OnPreparedListe
             @Override
             protected void onExtractionComplete(SparseArray<YtFile> ytFiles, VideoMeta videoMeta) {
                 if (ytFiles != null) {
-                    YtFile ytFile = getBestStream(ytFiles);
+                    /*YtFile ytFile = getBestStream(ytFiles);*/
+                    // itag=140 là mã định dạng âm thanh duy nhất của YouTube, chỉ có âm thanh
+                    YtFile ytFile = ytFiles.get(140);
                     String url = ytFile.getUrl();
                     mVideoTitle = videoMeta.getTitle();
                     String thumbUrl = videoMeta.getThumbUrl();
